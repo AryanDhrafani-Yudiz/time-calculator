@@ -1,16 +1,10 @@
-# Time-Over Calculator
+# Time-Over Calculator (Dark Mode)
 
-A tiny static site to calculate **when you will complete 8 hours** of effective work time.
+A minimal static website to calculate when you will complete **8 hours** of effective work time.
 
-## How it works
-- Enter **current effective** hours/minutes (already counted today).
-- Enter your **last punch‑in** time (24h).
-- The app adds the **remaining time** needed to reach `8:00` to the **last punch‑in** time.
+- Dark Mode toggle (default **ON**) in top-left
+- Responsive and lightweight
+- No dependencies
 
-## Files
-- `index.html`
-- `style.css`
-- `script.js`
-
-## Run locally
-Just open `index.html` in your browser.
+## Deploy on GitHub Pages
+Upload `index.html`, `style.css`, and `script.js` to your repo root, enable Pages (Deploy from branch).

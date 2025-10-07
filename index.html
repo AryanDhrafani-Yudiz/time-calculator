@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark">
   <title>Time-Over Calculator</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body class="dark">
-  <div class="theme-toggle">
-    <label class="switch">
-      <input type="checkbox" id="themeSwitch" checked>
-      <span class="slider"></span>
+  <header class="topbar">
+    <label class="dark-toggle">
+      <input type="checkbox" id="darkToggle" checked />
+      <span>Dark Mode</span>
     </label>
-    <span>Dark Mode</span>
-  </div>
+  </header>
 
-  <div class="container">
+  <main class="container">
     <h1>8-Hour Time Calculator</h1>
 
     <div class="grid">
       <div class="field">
         <label for="effHours">Current Effective Hours</label>
-        <input type="number" id="effHours" min="0" max="8" placeholder="Hours" />
+        <input type="number" id="effHours" min="0" max="12" placeholder="Hours" />
       </div>
 
       <div class="field">
@@ -41,8 +41,8 @@
     </div>
 
     <button id="calcBtn">Calculate End Time</button>
-    <p id="result"></p>
-  </div>
+    <p id="result" aria-live="polite"></p>
+  </main>
 
   <script src="script.js"></script>
 </body>
