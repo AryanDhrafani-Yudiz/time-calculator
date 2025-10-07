@@ -4,7 +4,34 @@ body{
   background:#f6f7fb;
   margin:0; padding:0;
   color:#101828;
+  transition: background 0.3s, color 0.3s;
 }
+
+/* DARK THEME */
+body.dark{
+  background:#1e293b;
+  color:#e2e8f0;
+}
+body.dark .container{
+  background:#334155;
+  color:#e2e8f0;
+}
+body.dark input{
+  background:#475569;
+  border:1px solid #64748b;
+  color:#e2e8f0;
+}
+body.dark input:focus{
+  border-color:#93c5fd;
+  box-shadow:0 0 0 3px rgba(59,130,246,.25);
+}
+body.dark button{
+  background:#2563eb;
+}
+body.dark .help{
+  color:#cbd5e1;
+}
+
 .container{
   max-width:620px;
   margin:48px auto;
@@ -12,8 +39,10 @@ body{
   border-radius:12px;
   padding:24px;
   box-shadow:0 10px 30px rgba(16,24,40,.08);
+  transition: background 0.3s, color 0.3s;
 }
 h1{ margin:0 0 16px; font-size:28px; line-height:1.2 }
+
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -22,7 +51,7 @@ h1{ margin:0 0 16px; font-size:28px; line-height:1.2 }
 .field label{
   display:block;
   font-size:14px;
-  color:#344054;
+  color:inherit;
   margin-bottom:6px;
 }
 .field input{
@@ -34,6 +63,7 @@ h1{ margin:0 0 16px; font-size:28px; line-height:1.2 }
   outline:none;
 }
 .field input:focus{ border-color:#7aa2ff; box-shadow:0 0 0 3px rgba(99,102,241,.15) }
+
 button{
   width:100%;
   margin-top:16px;
@@ -44,14 +74,63 @@ button{
   border-radius:10px;
   font-size:16px;
   cursor:pointer;
+  transition: background 0.3s;
 }
 button:hover{ filter:brightness(.95) }
+
 #result{
   margin-top:14px;
   font-weight:600;
   text-align:center;
 }
-.help{ margin-top:12px; color:#475467; font-size:14px }
+
+.help{ margin-top:12px; font-size:14px }
+
+.theme-toggle{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  padding:16px;
+  gap:8px;
+  font-size:14px;
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .3s;
+  border-radius: 34px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px; width: 18px;
+  left: 3px; bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: #2563eb;
+}
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
 @media (max-width:560px){
   .grid{ grid-template-columns:1fr; }
 }
