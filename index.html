@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,14 +8,21 @@
   <title>Time-Over Calculator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body class="dark">
   <header class="topbar">
-    <div class="logo-section">
-      <img src="images/clock.png" alt="Clock Logo" class="logo" />
-      <h2>Time Calculator</h2>
+    <div class="brand">
+      <svg class="clock" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" />
+        <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+      <span class="brand-text">Time Calculator</span>
     </div>
-    <button id="themeBtn" class="theme-btn" aria-label="Toggle Theme">
-      <img id="themeIcon" src="images/night.png" alt="Toggle Theme" />
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+      <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
     </button>
   </header>
 
@@ -30,8 +38,8 @@
         <input type="number" id="effMinutes" min="0" max="59" placeholder="Minutes" />
       </div>
       <div class="field">
-        <label for="lastHour">Last Punch-in Hour (24h)</label>
-        <input type="number" id="lastHour" min="0" max="23" placeholder="Hour" />
+        <label for="lastHour">Last Punch-in Hour</label>
+        <input type="number" id="lastHour" min="1" max="12" placeholder="Hour (1-12)" />
       </div>
       <div class="field">
         <label for="lastMinute">Last Punch-in Minute</label>
@@ -43,4 +51,5 @@
   </main>
   <script src="script.js"></script>
 </body>
+
 </html>
