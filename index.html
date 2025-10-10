@@ -9,41 +9,38 @@
 </head>
 <body class="dark">
   <header class="topbar">
-    <label class="dark-toggle">
-      <input type="checkbox" id="darkToggle" checked />
-      <span>Dark Mode</span>
-    </label>
+    <div class="logo-section">
+      <img src="images/clock.png" alt="Clock Logo" class="logo" />
+      <h2>Time Calculator</h2>
+    </div>
+    <button id="themeBtn" class="theme-btn" aria-label="Toggle Theme">
+      <img id="themeIcon" src="images/night.png" alt="Toggle Theme" />
+    </button>
   </header>
 
   <main class="container">
     <h1>8-Hour Time Calculator</h1>
-
     <div class="grid">
       <div class="field">
         <label for="effHours">Current Effective Hours</label>
         <input type="number" id="effHours" min="0" max="12" placeholder="Hours" />
       </div>
-
       <div class="field">
         <label for="effMinutes">Current Effective Minutes</label>
         <input type="number" id="effMinutes" min="0" max="59" placeholder="Minutes" />
       </div>
-
       <div class="field">
         <label for="lastHour">Last Punch-in Hour (24h)</label>
         <input type="number" id="lastHour" min="0" max="23" placeholder="Hour" />
       </div>
-
       <div class="field">
         <label for="lastMinute">Last Punch-in Minute</label>
         <input type="number" id="lastMinute" min="0" max="59" placeholder="Minute" />
       </div>
     </div>
-
-    <button id="calcBtn">Calculate End Time</button>
+    <button id="calcBtn">Calculate</button>
     <p id="result" aria-live="polite"></p>
   </main>
-
   <script src="script.js"></script>
 </body>
 </html>
