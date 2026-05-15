@@ -9,8 +9,11 @@
   --muted: #475467;
   --border: #d0d5dd;
   --primary: #2563eb;
+  --primary-light: #eff6ff;
   --focus: rgba(99, 102, 241, .15);
   --shadow: 0 20px 40px rgba(16, 24, 40, .08);
+  --success: #16a34a;
+  --error: #dc2626;
 }
 
 body.dark {
@@ -20,14 +23,14 @@ body.dark {
   --muted: #cbd5e1;
   --border: #334155;
   --primary: #3b82f6;
+  --primary-light: rgba(59, 130, 246, .12);
   --focus: rgba(59, 130, 246, .25);
   --shadow: 0 20px 40px rgba(2, 6, 23, .55);
+  --success: #4ade80;
+  --error: #f87171;
 }
 
-html,
-body {
-  height: 100%
-}
+html, body { height: 100% }
 
 body {
   margin: 0;
@@ -38,6 +41,7 @@ body {
   transition: background .25s, color .25s;
 }
 
+/* ── Top bar ──────────────────────────────────────────────── */
 .topbar {
   padding: 10px 14px;
   display: flex;
@@ -53,10 +57,7 @@ body {
   font-size: 18px;
 }
 
-.clock {
-  width: 24px;
-  height: 24px;
-}
+.clock { width: 24px; height: 24px; }
 
 .theme-toggle {
   background: transparent;
@@ -73,37 +74,95 @@ body {
   height: 36px;
 }
 
-.theme-toggle:hover {
-  background: rgba(0, 0, 0, .05);
-}
+.theme-toggle:hover { background: rgba(0, 0, 0, .05); }
+body.dark .theme-toggle:hover { background: rgba(255, 255, 255, .1); }
+.theme-toggle svg { width: 20px; height: 20px; stroke: var(--text); }
 
-body.dark .theme-toggle:hover {
-  background: rgba(255, 255, 255, .1);
-}
-
-.theme-toggle svg {
-  width: 20px;
-  height: 20px;
-  stroke: var(--text);
-}
-
+/* ── Card ─────────────────────────────────────────────────── */
 .container {
   max-width: 760px;
   margin: 40px auto;
   background: var(--card);
   color: var(--text);
   border-radius: 12px;
-  padding: 24px;
+  padding: 28px 28px 24px;
   box-shadow: var(--shadow);
 }
 
 h1 {
-  margin: 0 0 18px;
+  margin: 0 0 22px;
   font-size: 32px;
   line-height: 1.2;
   font-weight: 800;
 }
 
+/* ── Shift selector ───────────────────────────────────────── */
+.shift-selector {
+  margin-bottom: 20px;
+}
+
+.shift-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.shift-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Hide native radio */
+.shift-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.shift-card {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 16px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+  user-select: none;
+  min-width: 130px;
+}
+
+.shift-card strong {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.shift-card small {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.shift-option input[type="radio"]:checked + .shift-card {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+.shift-option input[type="radio"]:checked + .shift-card strong {
+  color: var(--primary);
+}
+
+.shift-option:hover .shift-card {
+  border-color: var(--primary);
+}
+
+/* ── Input grid ───────────────────────────────────────────── */
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -115,6 +174,11 @@ h1 {
   font-size: 13px;
   color: var(--muted);
   margin: 0 0 6px;
+}
+
+.hint {
+  font-size: 11px;
+  opacity: .7;
 }
 
 .field input {
@@ -134,7 +198,8 @@ h1 {
   box-shadow: 0 0 0 3px var(--focus);
 }
 
-button {
+/* ── Button ───────────────────────────────────────────────── */
+button#calcBtn {
   width: 100%;
   margin-top: 16px;
   padding: 12px 16px;
@@ -148,24 +213,38 @@ button {
   transition: filter .2s;
 }
 
-button:hover {
-  filter: brightness(.97);
-}
+button#calcBtn:hover { filter: brightness(.9); }
 
+/* ── Result ───────────────────────────────────────────────── */
 #result {
-  margin-top: 14px;
-  font-weight: 700;
+  margin-top: 16px;
+  font-size: 15px;
+  font-weight: 600;
   text-align: center;
+  line-height: 1.6;
+  min-height: 1.6em;
 }
 
-@media (max-width:720px) {
-  .container {
-    margin: 20px;
-  }
+#result strong {
+  font-size: 18px;
 }
 
-@media (max-width:560px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
+#result .sub {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+#result.success { color: var(--success); }
+#result.error   { color: var(--error);   font-weight: 500; }
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .container { margin: 20px; }
+}
+
+@media (max-width: 560px) {
+  .grid { grid-template-columns: 1fr; }
+  .shift-options { flex-direction: column; }
+  .shift-card { min-width: unset; }
 }
