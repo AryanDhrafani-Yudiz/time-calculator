@@ -35,16 +35,11 @@
    * Auto-detect AM / PM for office punch-in times.
    *
    * Office window: 10 AM – 7 PM
-   *   • 10, 11  → AM  (10:xx AM, 11:xx AM)
+   *   • 8 – 11  → AM  (8:xx AM … 11:xx AM)
    *   • 12      → PM  (12:xx PM = noon, NOT midnight)
-   *   • 1 – 9   → PM  (1:xx PM … 9:xx PM)
-   *
-   * BUG that was here before:
-   *   (hour >= 10 || hour === 12) ? 'AM' : 'PM'
-   *   → treated noon (12) as AM  ← midnight!
-   *   → treated any hour ≥ 10 as AM, so 11 PM punch-in → AM too.
+   *   • 1 – 7   → PM  (1:xx PM … 7:xx PM)
    */
-  const getAutoPeriod = (hour) => (hour === 10 || hour === 11) ? 'AM' : 'PM';
+  const getAutoPeriod = (hour) => (hour >= 8 && hour <= 11) ? 'AM' : 'PM';
 
   /** 12-h + period  →  24-h integer */
   const to24h = (hour, period) => {
